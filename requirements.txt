@@ -3,3 +3,5 @@ numpy
 pandas
 matplotlib
 sklearn
+transformers
+torch
