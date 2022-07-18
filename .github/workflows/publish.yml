@@ -28,6 +28,22 @@ jobs:
           TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
         run: twine upload dist/*
       
+      - name: Assign release version from osbm/VERSION to Env variable
+        run: |
+          cat osbm/VERSION >> $version_file          
+
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions, you do not need to create your own token
+        with:
+          tag_name: ${{ env.version_file }}
+          release_name: Release ${{ env.version_file }}
+          draft: false
+          prerelease: false
+
       - name: release
         uses: softprops/action-gh-release@v1
           
