@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - osbm/VERSION
+      - .github/workflows/publish.yml
 
 jobs:
   publish_package:
