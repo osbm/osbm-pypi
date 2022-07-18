@@ -1,0 +1,29 @@
+name: Publish to PYPI and github
+
+on:
+  push:
+    paths:
+      - osbm/VERSION
+
+jobs:
+  publish_package:
+    name: Publish the osbm package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: | 
+          python -m pip install --upgrade pip
+          pip install setuptools wheel twine
+
+      - name: Build the package
+        run: python setup.py sdist bdist_wheel
+
+      - name: Upload to PyPI
+        env:
+          TWINE_USERNAME: ${{ secrets.PYPI_USERNAME }}
+          TWINE_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: twine upload dist/*
+      
