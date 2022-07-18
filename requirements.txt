@@ -8,3 +8,4 @@ transformers
 torch
 spektral
 tqdm
+lux
