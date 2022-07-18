@@ -30,8 +30,7 @@ jobs:
       
       - name: Assign release version from osbm/VERSION to Env variable
         run: |
-          cat osbm/VERSION >> $version_file          
-
+          echo "version_file=$(cat osbm/VERSION)" >> $GITHUB_ENV
 
       - name: Create Release
         id: create_release
