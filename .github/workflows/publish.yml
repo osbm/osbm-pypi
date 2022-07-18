@@ -43,6 +43,4 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: release
-        uses: softprops/action-gh-release@v1
           
