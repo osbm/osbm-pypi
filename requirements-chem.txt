@@ -1,0 +1,2 @@
+deepchem
+rdkit-pypi
