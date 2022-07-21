@@ -10,3 +10,4 @@ spektral
 tqdm
 lux
 ipython-autotime
+kaggle
