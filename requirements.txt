@@ -11,3 +11,4 @@ tqdm
 lux
 ipython-autotime
 kaggle
+plot-keras-history
