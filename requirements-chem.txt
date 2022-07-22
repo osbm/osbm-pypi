@@ -1,2 +1,4 @@
 deepchem
 rdkit-pypi
+deepsmiles
+selfies
