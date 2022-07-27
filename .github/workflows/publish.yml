@@ -19,11 +19,15 @@ jobs:
 
       - name: Generate release message
         run: |
-          .github/release_message.sh
+          .github/release_message.sh > .github/release_message.md
 
       - name: Print release message
         run: |
           cat release_message.md
+
+      - name: echo "Publishing to PyPI"
+        run: |
+          echo "Publishing to PyPI"
 
       - name: Upload release message artifact
         uses: actions/upload-artifact@v3
