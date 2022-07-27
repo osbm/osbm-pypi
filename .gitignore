@@ -1,2 +1,5 @@
 dist/
 *egg-info/
+
+.venv/
+build
