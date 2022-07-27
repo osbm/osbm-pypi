@@ -17,13 +17,20 @@ jobs:
       - name: Checkout the repository
         uses: actions/checkout@v3
 
-      - name: Generate Changelog
+      - name: Generate release message
         run: |
           .github/release_message.sh > release_message.md
 
-      - name: Print Changelog
+      - name: Print release message
         run: |
           cat release_message.md
+
+      - name: Upload release message artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-message
+          path: |
+            relase_message.md
 
       - name: Install dependencies
         run: | 
