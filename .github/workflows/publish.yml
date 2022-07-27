@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Checkout the repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
 
       - name: Generate release message
         run: |
@@ -24,13 +26,6 @@ jobs:
       - name: Print release message
         run: |
           cat release_message.md
-
-      - name: Upload release message artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: release-message
-          path: |
-            release_message.md
 
       - name: Install dependencies
         run: | 
