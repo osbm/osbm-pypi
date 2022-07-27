@@ -19,7 +19,7 @@ jobs:
 
       - name: Generate release message
         run: |
-          .github/release_message.sh > .github/release_message.md
+          .github/release_message.sh > release_message.md
 
       - name: Print release message
         run: |
