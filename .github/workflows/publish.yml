@@ -19,7 +19,7 @@ jobs:
 
       - name: Generate release message
         run: |
-          .github/release_message.sh > release_message.md
+          .github/release_message.sh
 
       - name: Print release message
         run: |
@@ -30,7 +30,7 @@ jobs:
         with:
           name: release-message
           path: |
-            relase_message.md
+            release_message.md
 
       - name: Install dependencies
         run: | 
