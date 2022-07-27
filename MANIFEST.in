@@ -1,1 +1,3 @@
 global-include *.txt *.py
+include osbm/VERSION
+recursive-include osbm *
