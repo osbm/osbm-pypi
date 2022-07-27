@@ -15,7 +15,10 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Generate Changelog
-        run: .github/release_message.sh > release_message.md
+        run: | #.github/release_message.sh > release_message.md
+          previous_tag=$(git tag --sort=-creatordate | sed -n 2p)
+          git shortlog "${previous_tag}.." | sed 's/^./    &/' >> release_message.md
+
 
       - name: Install dependencies
         run: | 
