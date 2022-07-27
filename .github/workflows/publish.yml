@@ -25,10 +25,6 @@ jobs:
         run: |
           cat release_message.md
 
-      - name: echo "Publishing to PyPI"
-        run: |
-          echo "Publishing to PyPI"
-
       - name: Upload release message artifact
         uses: actions/upload-artifact@v3
         with:
