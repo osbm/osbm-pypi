@@ -1,11 +1,7 @@
 
-print(__file__)
-print(__name__)
-# print current path
-import os
-print(os.getcwd())
-print()
-__version__ = open("osbm/VERSION").read()
+
+module_path = __file__.split("__init__.py")[0]
+__version__ = open(module_path + "VERSION").read()
 
 
 def poisson_disc_sampling(size=(1000, 1000), k=30, radius=10, seed=42):
