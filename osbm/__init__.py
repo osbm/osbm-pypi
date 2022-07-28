@@ -1,4 +1,11 @@
-__version__ = open("VERSION").read()
+
+print(__file__)
+print(__name__)
+# print current path
+import os
+print(os.getcwd())
+print()
+__version__ = open("osbm/VERSION").read()
 
 
 def poisson_disc_sampling(size=(1000, 1000), k=30, radius=10, seed=42):
