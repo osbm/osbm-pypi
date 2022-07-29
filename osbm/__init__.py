@@ -10,5 +10,5 @@ def download_gist(url: str = None):
     raise NotImplementedError
 
 
-def set_matplotlib_rc(setting: str ="notebook"):
+def set_matplotlib_rc(setting: str = "notebook"):
     raise NotImplementedError

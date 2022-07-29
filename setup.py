@@ -1,3 +1,6 @@
+"""
+Setup python module
+"""
 from setuptools import setup, find_packages
 
 
@@ -13,9 +16,7 @@ setup(
     license="MIT",
     url="https://github.com/osbm/osbm-pypi",
     install_requires=open("requirements.txt").read().splitlines(),
-    extras_require={
-        "chem": open("requirements-chem.txt").read().splitlines()
-    },
+    extras_require={"chem": open("requirements-chem.txt").read().splitlines()},
     python_requires=">=3.7",
     classifiers=[
         "Topic :: Scientific/Engineering :: Artificial Intelligence",

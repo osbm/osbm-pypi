@@ -10,6 +10,7 @@ class PoissanDiscSampling:
     """
     Poisson disc sampling algorithm.
     """
+
     def __init__(self, radius=30, size=(1920, 1080), seed=42, number_of_trials=30):
         """
         :param radius: radius of the disc
@@ -103,12 +104,14 @@ class PoissanDiscSampling:
         """
         Calculate the distance between two points.
         """
-        return np.sum((first_sample - second_sample)**2)
-        #difference = abs(a - b)
-        #return (difference**2).sum()
+        return np.sum((first_sample - second_sample) ** 2)
+        # difference = abs(a - b)
+        # return (difference**2).sum()
 
 
 if __name__ == "__main__":
-    poisssan_disc_sampling = PoissanDiscSampling(radius=30, size=(1920, 1080), number_of_trials=3)
+    poisssan_disc_sampling = PoissanDiscSampling(
+        radius=30, size=(1920, 1080), number_of_trials=3
+    )
     points = poisssan_disc_sampling.generate()
     print(points)
