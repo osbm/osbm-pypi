@@ -6,17 +6,17 @@ from setuptools import setup, find_packages
 
 setup(
     name="osbm",
-    version=open("osbm/VERSION").read().strip(),
+    version=open("osbm/VERSION", encoding="utf-8").read().strip(),
     description="osbm personal library",
-    long_description=open("README.md").read(),
+    long_description=open("README.md", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     author="osbm",
     author_email="osmanfbayram@gmail.com",
     packages=find_packages(),
     license="MIT",
     url="https://github.com/osbm/osbm-pypi",
-    install_requires=open("requirements.txt").read().splitlines(),
-    extras_require={"chem": open("requirements-chem.txt").read().splitlines()},
+    install_requires=open("requirements.txt", encoding="utf-8").read().splitlines(),
+    extras_require={"chem": open("requirements-chem.txt", encoding="utf-8").read().splitlines()},
     python_requires=">=3.7",
     classifiers=[
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
