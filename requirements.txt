@@ -12,3 +12,4 @@ lux
 ipython-autotime
 kaggle
 plot-keras-history
+huggingface-hub
