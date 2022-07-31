@@ -1,5 +1,6 @@
 from . import utils
 import importlib
+import os
 
 module_path = __file__.split("__init__.py", maxsplit=1)[0]
 __version__ = open(module_path + "VERSION", encoding="utf-8").read().strip()
@@ -16,14 +17,12 @@ def set_matplotlib_rc(setting: str = "notebook"):
 
 
 def is_colab() -> bool:
-
-    raise NotImplementedError()
+    return "COLAB_GPU" in os.environ
 
 
 def is_kaggle() -> bool:
-    assert importlib.util.find_spec("kaggle")
-
-    raise NotImplementedError()
+    # assert importlib.util.find_spec("kaggle")
+    return os.getcwd() == "/kaggle/working"
 
 
 def gpu_name():
@@ -32,6 +31,7 @@ def gpu_name():
 
 def download_huggingface_repository():
     raise NotImplementedError()
+
 
 def add_kaggle_token():
     assert is_colab(), "This function is only available in Colab"
