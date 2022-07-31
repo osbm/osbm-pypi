@@ -6,8 +6,8 @@ __version__ = open(module_path + "VERSION", encoding="utf-8").read().strip()
 
 
 def download_gist(url: str = None):
-
     assert url is not None, "Please provide an URL"
+
     raise NotImplementedError
 
 
@@ -15,11 +15,12 @@ def set_matplotlib_rc(setting: str = "notebook"):
     raise NotImplementedError
 
 
-def is_colab():
+def is_colab() -> bool:
+
     raise NotImplementedError()
 
 
-def is_kaggle():
+def is_kaggle() -> bool:
     assert importlib.util.find_spec("kaggle")
 
     raise NotImplementedError()
