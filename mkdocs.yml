@@ -1,1 +1,11 @@
-# TODO(osbm): add a link to the docs
+site_name: osbm
+repo_url: https://github.com/osbm/osbm-pypi/
+repo_name: osbm
+
+site_name: osbm
+site_description: Documentation for the osbm python package
+site_author: Osman
+site_url: https://osbm.readthedocs.io/en/latest/
+
+theme:
+  name: mkdocs

@@ -1,0 +1,23 @@
+name: Build Documentation
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/
+      - .github/workflows/build_docs.yml
+
+
+jobs:
+  deploy:
+    name: Build and deploy documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: pip install -r requirements-docs.txt
+
+      - name: Build the documentation
+        run: mkdocs gh-deploy --force --clean --verbose
