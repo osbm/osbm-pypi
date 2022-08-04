@@ -1,6 +1,7 @@
 site_name: osbm
 repo_url: https://github.com/osbm/osbm-pypi/
 repo_name: osbm
+edit_uri: ./edit/main/docs/
 
 site_name: osbm
 site_description: Documentation for the osbm python package
