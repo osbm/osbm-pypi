@@ -6,6 +6,7 @@ on:
     paths:
       - docs/
       - .github/workflows/build_docs.yml
+      - mkdocs.yml
 
 
 jobs:
