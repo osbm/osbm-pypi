@@ -13,6 +13,14 @@ import ipywidgets as widgets
 from IPython.core.display import display
 
 
+
+
+def is_colab() -> bool:
+    """
+    Check if the code is running in Google Colab.
+    """
+    return bool(importlib.util.find_spec("google.colab"))
+
 class PoissanDiscSampling:
     """
     Poisson disc sampling algorithm.
