@@ -29,6 +29,37 @@ def is_kaggle() -> bool:
     # assert importlib.util.find_spec("kaggle")
     return os.getcwd() == "/kaggle/working"
 
+
+def get_gpu_info():
+    """
+    Get the nvidia GPU information as pandas dataframe.
+    """
+
+    command = "nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.free,memory.used,count,utilization.gpu,utilization.memory --format=csv"
+
+    command_output = os.popen(command).read()
+
+    # remove units from column names
+    command_output = command_output.replace(" [MiB]", "")
+    command_output = command_output.replace(" [%]", "")
+
+    if command_output == "":
+        raise EnvironmentError("nvidia-smi is not installed")
+    elif command_output[:21] == "NVIDIA-SMI has failed":
+        return None
+
+    df = pd.read_csv(io.StringIO(command_output), sep=", ")
+    return df
+
+
+def gpu_name():
+    df = get_gpu_info()
+
+    if df is None:
+        return
+
+    return list(df["name"])
+
 class PoissanDiscSampling:
     """
     Poisson disc sampling algorithm.
