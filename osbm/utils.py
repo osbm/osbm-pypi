@@ -21,6 +21,14 @@ def is_colab() -> bool:
     """
     return bool(importlib.util.find_spec("google.colab"))
 
+
+def is_kaggle() -> bool:
+    """
+    Check if the code is running in Kaggle.
+    """
+    # assert importlib.util.find_spec("kaggle")
+    return os.getcwd() == "/kaggle/working"
+
 class PoissanDiscSampling:
     """
     Poisson disc sampling algorithm.
