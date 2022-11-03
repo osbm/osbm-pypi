@@ -2,6 +2,7 @@ from osbm import utils
 import numpy as np
 import itertools
 
+
 class TestPoissonDiscSampling:
     def test_generate_points_2d(self):
         config = {
@@ -15,7 +16,6 @@ class TestPoissonDiscSampling:
 
         for a, b in itertools.combinations(points, 2):
             assert np.linalg.norm(a - b) >= config["radius"]
-
 
     def test_generate_points_3d(self):
         config = {
