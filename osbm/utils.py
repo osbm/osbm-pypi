@@ -7,12 +7,42 @@ import os
 import io
 import random
 import math
+from typing import Optional
+
 import numpy as np
 import pandas as pd
-import ipywidgets as widgets
-from IPython.core.display import display
 
 
+def is_kaggle() -> bool:
+    """
+    Check if the machine is running in Kaggle.
+    """
+    return os.path.exists("/kaggle/working")
+
+
+def add_kaggle_token(token: Optional[str] = None, path: Optional[str] = None):
+    """
+    Authenticate to Kaggle using a token.
+
+    Args:
+        token: Entire kaggle.json file content
+
+        path: Path to kaggle.json file
+
+    """
+    assert (
+        token is not None or path is not None
+    ), "Either token or path must be provided"
+
+    os.makedirs("~/.kaggle", exist_ok=True)
+    if token is None:
+        with open(path, "r", encoding="utf-8") as file:
+            token = file.read()
+
+    with open("~/.kaggle/kaggle.json", "w", encoding="utf-8") as file:
+        file.write(token)
+
+    os.chmod("~/.kaggle/kaggle.json", 0o600)
 
 
 def is_colab() -> bool:
@@ -22,20 +52,12 @@ def is_colab() -> bool:
     return bool(importlib.util.find_spec("google.colab"))
 
 
-def is_kaggle() -> bool:
-    """
-    Check if the code is running in Kaggle.
-    """
-    # assert importlib.util.find_spec("kaggle")
-    return os.getcwd() == "/kaggle/working"
-
-
-def get_gpu_info():
+def get_gpu_info() -> pd.DataFrame:
     """
     Get the nvidia GPU information as pandas dataframe.
     """
 
-    command = "nvidia-smi --query-gpu=index,name,uuid,memory.total,memory.free,memory.used,count,utilization.gpu,utilization.memory --format=csv"
+    command = "nvidia-smi --query-gpu=index,name,memory.total,memory.free,memory.used,count,utilization.gpu,utilization.memory --format=csv"
 
     command_output = os.popen(command).read()
 
@@ -48,17 +70,8 @@ def get_gpu_info():
     elif command_output[:21] == "NVIDIA-SMI has failed":
         return None
 
-    df = pd.read_csv(io.StringIO(command_output), sep=", ")
-    return df
+    return pd.read_csv(io.StringIO(command_output), sep=", ")
 
-
-def gpu_name():
-    df = get_gpu_info()
-
-    if df is None:
-        return
-
-    return list(df["name"])
 
 class PoissanDiscSampling:
     """
@@ -108,7 +121,6 @@ class PoissanDiscSampling:
                     direction * self.rng.randrange(self.radius, 2 * self.radius)
                 ).astype(int)
                 if self.is_valid(candidate):
-
                     self.samples.append(candidate)
 
                     self.grid[tuple((candidate / self.cell_size).astype(int))] = len(
@@ -161,11 +173,3 @@ class PoissanDiscSampling:
         return np.sum((first_sample - second_sample) ** 2)
         # difference = abs(a - b)
         # return (difference**2).sum()
-
-
-if __name__ == "__main__":
-    poisssan_disc_sampling = PoissanDiscSampling(
-        radius=30, size=(1920, 1080), number_of_trials=3
-    )
-    points = poisssan_disc_sampling.generate()
-    print(points)
