@@ -2,12 +2,13 @@
 The module that contains the utility functions.
 """
 
-import importlib
 import os
 import io
-import random
 import math
-from typing import Optional
+import time
+import random
+import importlib
+from typing import Optional, Callable
 
 import numpy as np
 import pandas as pd
@@ -18,6 +19,19 @@ def is_kaggle() -> bool:
     Check if the machine is running in Kaggle.
     """
     return os.path.exists("/kaggle/working")
+
+
+def measure_time(func: Callable) -> Callable:
+    """decorator to measure time of a function"""
+
+    def wrapper(*args, **kwargs):
+        start = time.time()
+        result = func(*args, **kwargs)
+        end = time.time()
+        print(f" The function {func.__name__} took {end - start} seconds")
+        return result
+
+    return wrapper
 
 
 def add_kaggle_token(token: Optional[str] = None, path: Optional[str] = None):
@@ -56,7 +70,7 @@ def get_gpu_info() -> pd.DataFrame:
     """
     Get the nvidia GPU information as pandas dataframe.
     """
-
+    # pylint: disable=line-too-long
     command = "nvidia-smi --query-gpu=index,name,memory.total,memory.free,memory.used,count,utilization.gpu,utilization.memory --format=csv"
 
     command_output = os.popen(command).read()
