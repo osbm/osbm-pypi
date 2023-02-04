@@ -2,8 +2,6 @@
 This is the docs for the osbm package.
 """
 
-import importlib
-import os
 from .utils import *
 from . import imaging
 
