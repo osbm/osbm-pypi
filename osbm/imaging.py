@@ -34,3 +34,31 @@ def read_dicom_with_windowing(dcm_file: str) -> np.ndarray:
     data = (data * 255).astype(np.uint8)
 
     return data
+
+
+def pad_image_to_square(image: np.ndarray, keep_image_in_center=True) -> np.ndarray:
+    """
+    Pad an image to make it square.
+
+    Args:
+        image: The image to pad
+
+    Returns:
+        The padded image
+    """
+    height, width = image.shape[:2]
+    if height == width:
+        return image
+
+    if height > width:
+        padding = ((0, 0), ((height - width) // 2, (height - width) // 2), (0, 0))
+    else:
+        padding = (((width - height) // 2, (width - height) // 2), (0, 0), (0, 0))
+
+    if keep_image_in_center:
+        padded_image = np.pad(image, padding, mode="constant", constant_values=0)
+
+    else:
+        padded_image = np.pad(image, padding, mode="edge")
+
+    return padded_image
